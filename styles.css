@@ -1,0 +1,68 @@
+body, html {
+    min-height: 100vh !important;
+    background-color: #171A1B !important;
+}
+.book {
+    display: none;
+}
+
+.bookjs {
+    color: white;
+    padding: 5rem;
+    font-size: 5rem;
+}
+
+.bookjs p {
+    font-size: 2rem;
+    padding: 2rem 0;
+}
+
+input {
+    width: 100%;
+    height: 5rem;
+    border-radius: 20px;
+    font-size: 4rem;
+    color: gray;
+}
+
+.is-hidden {
+    display: none;
+}
+
+.highlight-color {
+    width: 100px;
+    aspect-ratio: 1/1;
+    border-radius: 50px;
+}
+
+.color-palette {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.highlight-color:hover {
+    cursor: pointer;
+    transform: scale(1.2);
+}
+
+[class*='chapter'],
+#searchBar {
+    width: 75%;
+    margin: 0 auto;
+    background-color: ;
+}
+
+[class*='chapter'] p {
+    font-size: 3rem;
+    padding: 2rem 3rem;
+    border-radius: 20px;
+    border: 2px solid gray;
+}
+
+#searchBar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 0;
+    margin: 3rem 0;
+}
