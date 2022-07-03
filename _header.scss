@@ -1,0 +1,75 @@
+$color-purple1: #F7C0FF;
+$color-purple2: #9266FF;
+$color-purple3: #7B5FC7;
+$color-purple4: #602DEB;
+
+.header {
+    img{
+        height: 20px;
+        width: auto;
+    }
+    & div {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        outline: 2px solid $color-purple1;
+        
+    }
+    flex-direction: column;
+    background-color: $color-purple3;
+    // padding: 1rem;
+    
+    .header1 {
+        h2 {
+            color: white;
+            font-size: 1rem;
+        }
+        & * {
+            outline: 1px solid $color-purple1;
+            align-self: center;
+        }
+        // border: 1px solid red;
+        padding: 1rem 0 0.5rem 0;
+        min-width: 100vw;
+        background-color: $color-purple4;
+        height: 4rem;
+        // justify-self: flex-start;
+
+
+        label, button {
+             font-family: 'Mukta Vaani', sans-serif;
+             all: unset;
+             border-radius: 4px;
+             padding: 0 8px;
+             height: 2rem;
+             text-align: center;
+             vertical-align: middle;
+             
+             &:hover {
+                 cursor: pointer !important;
+
+             }
+        }
+        input {
+        
+            width: 0.1px;
+            height: 0.1px;
+            opacity: 0;
+            overflow: hidden;
+            position: absolute;
+            z-index: -1;
+        }
+        label {
+            text-align: center;
+            vertical-align: middle;
+            background-color: $color-purple3;
+            color: $color-purple1;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+        button {
+            background-color: $color-purple2;
+            color: $color-purple4;
+        }
+    }
+}

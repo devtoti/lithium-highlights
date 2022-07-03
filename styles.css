@@ -1,0 +1,143 @@
+.header {
+  flex-direction: column;
+  background-color: #7B5FC7;
+}
+.header img {
+  height: 20px;
+  width: auto;
+}
+.header div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  outline: 2px solid #F7C0FF;
+}
+.header .header1 {
+  padding: 1rem 0 0.5rem 0;
+  min-width: 100vw;
+  background-color: #602DEB;
+  height: 4rem;
+}
+.header .header1 h2 {
+  color: white;
+  font-size: 1rem;
+}
+.header .header1 * {
+  outline: 1px solid #F7C0FF;
+  align-self: center;
+}
+.header .header1 label, .header .header1 button {
+  font-family: "Mukta Vaani", sans-serif;
+  all: unset;
+  border-radius: 4px;
+  padding: 0 8px;
+  height: 2rem;
+  text-align: center;
+  vertical-align: middle;
+}
+.header .header1 label:hover, .header .header1 button:hover {
+  cursor: pointer !important;
+}
+.header .header1 input {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+.header .header1 label {
+  text-align: center;
+  vertical-align: middle;
+  background-color: #7B5FC7;
+  color: #F7C0FF;
+  font-size: 1rem;
+  cursor: pointer;
+}
+.header .header1 button {
+  background-color: #9266FF;
+  color: #602DEB;
+}
+
+#selected-book {
+  display: grid;
+  grid-template-columns: 2rem 1fr 2rem;
+  min-height: 100vh;
+}
+#selected-book h1 {
+  grid-column: 2/3;
+  text-align: center;
+  font-size: 24px;
+  padding-bottom: 1rem;
+  outline: 1px solid black;
+}
+#selected-book .color-palette {
+  outline: 1px solid black;
+  grid-column: 2/3;
+  height: 1.5rem;
+  margin-top: 1rem;
+  z-index: 2;
+  display: grid;
+  grid-template: 50px/repeat(10, 1fr);
+}
+#selected-book .highlight-color {
+  outline: 2px solid rgb(176, 176, 176);
+  width: 1.5rem;
+  aspect-ratio: 1/1;
+  border-radius: 50px;
+  cursor: pointer;
+  transform: scale(1.1);
+}
+#selected-book div[class*=chapter] {
+  outline: 1px solid black;
+  grid-column: 2/3;
+}
+#selected-book div[class*=chapter] p {
+  box-sizing: border-box;
+  border: 2px solid;
+  margin: 16px 0;
+  padding: 0.5rem 0.5rem 0.5rem 1rem;
+  border-radius: 0 4px 4px 0;
+  border-left: 16px solid;
+  color: #5b5b5b;
+  font-weight: 500;
+  font-size: 20px;
+}
+#selected-book div[class*=chapter] p:hover {
+  background-color: #E6E6E6;
+  transform: scale(1.05);
+  color: #a1a1a1;
+  cursor: pointer;
+}
+#selected-book div[class*=chapter] h3 {
+  font-size: 20px;
+  color: #333333;
+  font-weight: 500;
+  font-style: italic;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-thickness: 1px;
+}
+
+.is-hidden {
+  display: none;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Mukta Vaani", sans-serif;
+  font-weight: 400;
+}
+
+body, html {
+  min-height: 100vh !important;
+  max-width: 100vw;
+  background-color: #ffffff !important;
+  overflow-x: hidden;
+}
+
+.app {
+  width: 100%;
+}/*# sourceMappingURL=styles.css.map */

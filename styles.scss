@@ -1,0 +1,26 @@
+@import 'header';
+@import 'container';
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Mukta Vaani', sans-serif;
+    font-weight: 400;
+}
+body, html {
+    min-height: 100vh !important;
+    max-width: 100vw;
+    background-color: #ffffff !important;
+    overflow-x: hidden;
+}
+
+.app {
+    width: 100%;
+    // .header{
+    //     height: 20%;
+        
+    // }
+
+       
+}

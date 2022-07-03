@@ -8,7 +8,7 @@ const searchBar = document.querySelector('#searchBar')
 const reader = new FileReader();
 let data = "";
 let highlightColors;
-
+let bookTitle;
 uploader.addEventListener("change", handleFile);
 
 function handleFile(e) {
@@ -23,18 +23,21 @@ function placeFileContent(target, file) {
         .then((readData) => {
             data = `${readData}`;
             //run RegExps in order to determine annotations, highlights and colors
+            const re_bookTitle = /(?<=\<h1\>).+(?=\<\/h1\>)/
             const re_highlight = /(?<=\<div class='highlight'\>).+(?=\<\/div\>)/
             const re_title = /(?<=\<div class='title'\>).+(?=\<\/div\>)/
             const re_color = /#[\w-\d]*(?=')/
             const regExpColor = new RegExp(re_color, 'gmi')
             const regExpTitle = new RegExp(re_title, 'gmi')
             const regExpHighlight = new RegExp(re_highlight, 'gmi')
+            const regExpBookTitle = new RegExp(re_bookTitle, 'gmi')
             let colorResults = data.match(regExpColor)
             highlightColors = colorResults
             let titleResults = data.match(regExpTitle)
             let highlightResults = data.match(regExpHighlight)
-
-            classifyAnnotations(titleResults, highlightResults, colorResults, titleResults.length)
+            bookTitle = data.match(regExpBookTitle)
+            console.log(bookTitle)
+            classifyAnnotations(titleResults, highlightResults, colorResults, titleResults.length, bookTitle)
 
         })
         .catch((error) => console.error(error));
@@ -52,7 +55,7 @@ function readFile(file) {
 
 
 //read user file and create main data object containing arrays based on chapters
-function classifyAnnotations(titles, highlights, colors, nums) {
+function classifyAnnotations(titles, highlights, colors, nums, bookTitle) {
     let results = []
     let data2 = {}
     for (i = 0; i < nums; i++) {
@@ -68,12 +71,12 @@ function classifyAnnotations(titles, highlights, colors, nums) {
         data2 = { ...data2, [element.title]: [...(data2[element.title] || []), { highlight: element.highlight, color: element.color }] }
     }
 
-    displayBook(data2)
+    displayBook(data2, bookTitle)
     // console.log(data2)
 }
 
 
-function displayBook(book) {
+function displayBook(book, name) {
     let i = 1;
     // console.log(book)
     for (let chapter in book) {
@@ -88,17 +91,21 @@ function displayBook(book) {
         newChapter.appendChild(chapterTitle)
 
         for (let annotation of section) {
-            console.log(annotation)
+            // console.log(annotation)
             let chapterHighlight = document.createElement("p")
-            chapterHighlight.style.color = annotation.color
+            chapterHighlight.style.borderColor = annotation.color
             let titleContent = document.createTextNode(annotation.highlight)
             chapterHighlight.appendChild(titleContent)
             newChapter.appendChild(chapterHighlight)
         }
-
-        // console.log(newChapter.children.length)
+        // bookName.createTextNode(bookTitle)
+        // newBook.appendChild(bookName)
         newBook.appendChild(newChapter)
     }
+    let bookName = document.createElement('h1')
+    let bookNameContent = document.createTextNode(name)
+    bookName.appendChild(bookNameContent)
+    newBook.prepend(bookName)
     getColors()
 }
 
@@ -122,12 +129,13 @@ function getColors() {
 
 
 function filterColors(e) {
+    console.log(e.target.style)
     const highlights = document.querySelectorAll('p')
     const circleColor = e.target.style.backgroundColor;
     chapters = document.querySelectorAll("[class*=chapter]")
 
     for (let p of highlights) {
-        if (circleColor == p.style.color) {
+        if (circleColor == p.style.borderColor) {
             // console.log(true)
             p.classList.remove('is-hidden')
         } else {

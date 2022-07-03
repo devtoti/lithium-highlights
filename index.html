@@ -1,26 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lithium Highlights</title>
-    <link rel="stylesheet" href="src/styles.css">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lithium Highlights</title>
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Mukta+Vaani:wght@300;400;500&display=swap" rel="stylesheet">
 </head>
+
 <body>
-    <div id="app">
-        <form target="uploadfiles.php" method="post" accept=".html">
-          <input type="file" id="file-upload" />
-          <!-- <input type="button" value="Upload Now" onchange="handleFile()" /> -->
-        </form>
-        <!-- <button type="button" id="check-btn">CHECK</button> -->
-        <!-- <textarea id="output">file</textarea>
-        <textarea id="tests">test</textarea> -->
-        <input type="search" id="searchBar" placeholder="Search for your highlight"></input>
-        <div id="selected-book">
-        </div>
+  <div id="app">
+    <div class="header">
+      <div class="header1 logo-buttons">
+        <img src="/src/logo.png" alt="Lithium Icon">
+        <h2>Lithium Highlights</h2>
+        <!-- <form target="uploadfiles.php" method="post" accept=".html"> -->
+        <input type="file" name="file" id="file-upload" />
+        <label for="file-upload">Choose book</label>
+        <!-- <input type="button" value="Upload Now" onchange="handleFile()" /> -->
+        <!-- </form> -->
+        <button type="button">Load Sample</button>
       </div>
-  
-      <script src="src/script.js"></script>
+      <div class="header2 search-bars">
+        <input type="search" id="searchBar" placeholder="Search for your highlight"></input>
+        <label for="pet-select">Choose a pet:</label>
+        <select id="pet-select">
+          <option value="dog">Dog</option>
+          <option value="cat">Cat</option>
+          <option value="hamster">Hamster</option>
+          <option value="parrot">Parrot</option>
+          <option value="spider">Spider</option>
+          <option value="goldfish">Goldfish</option>
+        </select>
+      </div>
+      <div class="header3 color-palette">
+      </div>
+    </div>
+    <!-- <button type="button" id="check-btn">CHECK</button> -->
+    <!-- <textarea id="output">file</textarea>
+        <textarea id="tests">test</textarea> -->
+    <div id="selected-book">
+      <!-- TEST ONLY-->
+      <!-- <div class="color-palette">
+        <div class="highlight-color" style="background-color: rgb(247, 237, 124);"></div>
+        <div class="highlight-color" style="background-color: rgb(247, 124, 124);"></div>
+        <div class="highlight-color" style="background-color: rgb(68, 255, 199);"></div>
+      </div>
+      <h1>Peace Is Every Step: The Path of Mindfulness in Everyday Life</h1>
+      <div class="chapter1"><h3>About the Author</h3><p style="color: rgb(247, 237, 124);">He was nominated by Martin Luther King, Jr. for the Nobel Peace Prize in 1967.</p>
+        <p style="color: rgb(247, 124, 124);">We know how to sacrifice ten years for a diploma, and we are willing to work very hard to get a job, a car, a house, and so on. But we have difficulty remembering that we are alive in the present moment, the only moment there is for us to be alive</p>
+      </div>
+    </div> -->
+
+    
+  </div>
+
+  <script src="src/script.js"></script>
 </body>
+
 </html>
