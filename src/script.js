@@ -9,19 +9,17 @@ const headerColors = document.getElementsByClassName('color-palette')
 const reader = new FileReader();
 const paragraphs = document.querySelectorAll('p')
 const copyDialog = document.getElementsByTagName('dialog')[0]
+const sampleFile = document.getElementsByClassName('load-sample')[0]
 let data = "";
 let highlightColors;
 let bookTitle;
-uploader.addEventListener("change", handleFile);
-console.log(headerColors)
 
+uploader.addEventListener("change", handleFile);
+sampleFile.addEventListener('click', handleFile)
+console.log(sampleFile)
 
 function handleFile(e) {
     const userFile = e.target.files[0];
-    // console.log(userFile)
-    if (userFile === null) {
-        alert('Must be a valid Lithium HTML File')
-    }
     placeFileContent(data, userFile);
 }
 

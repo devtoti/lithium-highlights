@@ -91,6 +91,62 @@
   cursor: pointer;
 }
 
+@media only screen and (min-width: 720px) {
+  * {
+    font-size: large;
+  }
+
+  .header {
+    padding: 0 25%;
+    justify-content: center !important;
+    isolation: isolate;
+  }
+
+  .header2 {
+    padding: 1rem 0;
+  }
+
+  .header1, .header2, .header3 {
+    min-width: 50vh !important;
+  }
+
+  .header1::before {
+    content: "";
+    display: block;
+    background-color: #602DEB;
+    width: 100%;
+    height: inherit;
+    position: absolute;
+    top: 0;
+    z-index: -1;
+  }
+
+  .header1 {
+    gap: 1em;
+  }
+  .header1 img {
+    width: 36px;
+    height: 36px;
+  }
+  .header1 h2 {
+    font-size: 1.5rem !important;
+    flex: 1;
+  }
+
+  .header3 {
+    height: 60px !important;
+    padding-bottom: 2rem !important;
+    box-sizing: border-box;
+  }
+  .header3 .highlight-color {
+    height: 2rem !important;
+    width: 2rem !important;
+  }
+}
+.color-palette {
+  grid-template: 36px/repeat(8, 36px) !important;
+}
+
 #selected-book {
   display: grid;
   grid-template-columns: 2rem 1fr 2rem;
@@ -171,6 +227,22 @@
   z-index: 2;
 }
 
+@media only screen and (min-width: 720px) {
+  #selected-book {
+    grid-template-columns: 25% 1fr 25%;
+    grid-template-rows: auto;
+  }
+
+  .bookmark {
+    right: 25% !important;
+    height: 96px !important;
+  }
+
+  h1 {
+    padding-top: 2rem;
+    font-size: 2rem !important;
+  }
+}
 * {
   padding: 0;
   margin: 0;

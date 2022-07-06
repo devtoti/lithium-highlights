@@ -81,7 +81,7 @@ $color-purple4: #602DEB;
     margin: 0.5rem 0.5rem 0.5rem 1rem;
     border-radius: 4px;
     position: relative;
-    
+
     &::after {
         content: '';
         display: block;
@@ -111,4 +111,66 @@ $color-purple4: #602DEB;
     height: 1rem;
     border-radius: 50px;
     cursor: pointer;
+}
+
+@media only screen  and (min-width: 720px) {
+
+* {
+    font-size: large;
+}
+.header {
+    padding: 0 25%;
+    justify-content: center !important;
+    isolation: isolate;
+}
+
+.header2 {
+    padding: 1rem 0;
+
+}
+
+.header1, .header2, .header3 {
+    min-width: 50vh !important;
+    // width: 100vh;
+}
+
+.header1::before {
+    content: '';
+    display: block;
+    background-color: #602DEB;
+    width: 100%;
+    height: inherit;
+    position:absolute;
+    top: 0;
+    z-index: -1;
+}
+
+.header1 {
+    gap: 1em;
+    img {
+        width: 36px;
+        height: 36px;
+    }
+    h2 {
+        font-size: 1.5rem !important;
+        flex: 1;
+    }
+
+}
+
+.header3 {
+    height: 60px !important;
+    padding-bottom: 2rem !important;
+    box-sizing: border-box;
+
+    .highlight-color {
+        height: 2rem !important;
+        width: 2rem !important;
+    }
+}
+}
+.color-palette {
+    grid-template: 36px/repeat(8, 36px) !important;
+
+
 }

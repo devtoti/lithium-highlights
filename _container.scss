@@ -104,3 +104,19 @@
     
 }
 
+@media only screen  and (min-width: 720px) {
+    #selected-book {
+        grid-template-columns: 25% 1fr 25%;
+        grid-template-rows: auto;
+    }
+
+    .bookmark {
+        right: 25% !important;
+        height: 96px !important;
+    }
+    h1 {
+        padding-top: 2rem;
+        font-size: 2rem !important;
+
+    }
+}
