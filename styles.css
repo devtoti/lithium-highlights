@@ -10,7 +10,6 @@
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-  outline: 2px solid #F7C0FF;
 }
 .header .header1 {
   padding: 1rem 0 0.5rem 0;
@@ -23,7 +22,6 @@
   font-size: 1rem;
 }
 .header .header1 * {
-  outline: 1px solid #F7C0FF;
   align-self: center;
 }
 .header .header1 label, .header .header1 button {
@@ -59,38 +57,59 @@
   color: #602DEB;
 }
 
+#searchBar {
+  flex: 2;
+  margin: 0.5rem 0.5rem 0.5rem 1rem;
+  border-radius: 4px;
+  position: relative;
+}
+#searchBar::after {
+  content: "";
+  display: block;
+  background-image: url(/src/search-icon.png);
+}
+
+#chapter-select {
+  flex: 1;
+  margin: 0.5rem 1rem 0.5rem 0.5rem;
+  border-radius: 4px;
+}
+
+.color-palette {
+  height: 1.5rem;
+  z-index: 2;
+  grid-template: 24px/repeat(8, 24px);
+  max-width: 100%;
+  margin: 0.5rem 1.5rem 0 1.5rem;
+  display: grid !important;
+}
+
+.highlight-color {
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50px;
+  cursor: pointer;
+}
+
 #selected-book {
   display: grid;
   grid-template-columns: 2rem 1fr 2rem;
   min-height: 100vh;
+}
+#selected-book img {
+  position: absolute;
+  right: 0;
+  margin-right: 1rem;
 }
 #selected-book h1 {
   grid-column: 2/3;
   text-align: center;
   font-size: 24px;
   padding-bottom: 1rem;
-  outline: 1px solid black;
-}
-#selected-book .color-palette {
-  outline: 1px solid black;
-  grid-column: 2/3;
-  height: 1.5rem;
-  margin-top: 1rem;
-  z-index: 2;
-  display: grid;
-  grid-template: 50px/repeat(10, 1fr);
-}
-#selected-book .highlight-color {
-  outline: 2px solid rgb(176, 176, 176);
-  width: 1.5rem;
-  aspect-ratio: 1/1;
-  border-radius: 50px;
-  cursor: pointer;
-  transform: scale(1.1);
 }
 #selected-book div[class*=chapter] {
-  outline: 1px solid black;
   grid-column: 2/3;
+  position: relative;
 }
 #selected-book div[class*=chapter] p {
   box-sizing: border-box;
@@ -103,11 +122,27 @@
   font-weight: 500;
   font-size: 20px;
 }
+#selected-book div[class*=chapter] p::after {
+  content: "";
+  display: block;
+  background-image: url(./src/copy-icon2.png);
+  background-size: contain;
+  height: 24px;
+  width: 24px;
+  position: absolute;
+  bottom: 1.5rem;
+  right: 1rem;
+  filter: contrast(0.1);
+}
 #selected-book div[class*=chapter] p:hover {
-  background-color: #E6E6E6;
+  background-color: #f1eded;
   transform: scale(1.05);
-  color: #a1a1a1;
+  color: #c4c4c4;
   cursor: pointer;
+}
+#selected-book div[class*=chapter] p:hover::after {
+  transform: scale(1.05);
+  bottom: 1rem;
 }
 #selected-book div[class*=chapter] h3 {
   font-size: 20px;
@@ -121,6 +156,19 @@
 
 .is-hidden {
   display: none;
+}
+
+.copy-to-clipboard {
+  position: fixed;
+  bottom: 50px;
+  left: 24px;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.2);
+  border: none;
+  color: white;
+  background-color: #309829;
+  z-index: 2;
 }
 
 * {

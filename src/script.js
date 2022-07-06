@@ -5,15 +5,23 @@ const textarea = document.getElementById("output");
 const test = document.getElementById("tests");
 const newBook = document.getElementById('selected-book')
 const searchBar = document.querySelector('#searchBar')
+const headerColors = document.getElementsByClassName('color-palette')
 const reader = new FileReader();
+const paragraphs = document.querySelectorAll('p')
+const copyDialog = document.getElementsByTagName('dialog')[0]
 let data = "";
 let highlightColors;
 let bookTitle;
 uploader.addEventListener("change", handleFile);
+console.log(headerColors)
+
 
 function handleFile(e) {
     const userFile = e.target.files[0];
     // console.log(userFile)
+    if (userFile === null) {
+        alert('Must be a valid Lithium HTML File')
+    }
     placeFileContent(data, userFile);
 }
 
@@ -22,11 +30,14 @@ function placeFileContent(target, file) {
     readFile(file)
         .then((readData) => {
             data = `${readData}`;
-            //run RegExps in order to determine annotations, highlights and colors
             const re_bookTitle = /(?<=\<h1\>).+(?=\<\/h1\>)/
             const re_highlight = /(?<=\<div class='highlight'\>).+(?=\<\/div\>)/
             const re_title = /(?<=\<div class='title'\>).+(?=\<\/div\>)/
             const re_color = /#[\w-\d]*(?=')/
+            const re_punctuation = /\&#8217;/g
+            const re_quotes = /\&#822\d;/g
+            data = data.replace(re_punctuation, "'", String)
+            data = data.replace(re_quotes, '"', String)
             const regExpColor = new RegExp(re_color, 'gmi')
             const regExpTitle = new RegExp(re_title, 'gmi')
             const regExpHighlight = new RegExp(re_highlight, 'gmi')
@@ -38,10 +49,26 @@ function placeFileContent(target, file) {
             bookTitle = data.match(regExpBookTitle)
             console.log(bookTitle)
             classifyAnnotations(titleResults, highlightResults, colorResults, titleResults.length, bookTitle)
-
+            
         })
-        .catch((error) => console.error(error));
-}
+        .catch((error) => alert('Must be a valid Lithium HTML File'));
+    }
+
+    
+// const fixFormatting = data => {
+//     //run RegExps in order to determine annotations, highlights and colors
+//     data = `${readData}`;
+//     const re_bookTitle = /(?<=\<h1\>).+(?=\<\/h1\>)/
+//     const re_highlight = /(?<=\<div class='highlight'\>).+(?=\<\/div\>)/
+//     const re_title = /(?<=\<div class='title'\>).+(?=\<\/div\>)/
+//     const re_color = /#[\w-\d]*(?=')/
+//     const regExpColor = new RegExp(re_color, 'gmi')
+//     const regExpTitle = new RegExp(re_title, 'gmi')
+//     const regExpHighlight = new RegExp(re_highlight, 'gmi')
+//     const regExpBookTitle = new RegExp(re_bookTitle, 'gmi')
+
+// }
+
 
 function readFile(file) {
     const reader = new FileReader();
@@ -97,6 +124,7 @@ function displayBook(book, name) {
             let titleContent = document.createTextNode(annotation.highlight)
             chapterHighlight.appendChild(titleContent)
             newChapter.appendChild(chapterHighlight)
+            chapterHighlight.addEventListener('click', copyToClipboard)
         }
         // bookName.createTextNode(bookTitle)
         // newBook.appendChild(bookName)
@@ -110,18 +138,17 @@ function displayBook(book, name) {
 }
 
 function getColors() {
-    
+
     let colorSet = new Set(highlightColors)
-    let colorPalette = document.createElement('div')
-    colorPalette.classList.add('color-palette')
+    // let colorPalette = document.createElement('div')
+    // colorPalette.classList.add('color-palette')
 
     colorSet.forEach(color => {
         console.log(color)
         let colorDiv = document.createElement('div')
         colorDiv.classList.add("highlight-color")
         colorDiv.style.backgroundColor = color
-        colorPalette.appendChild(colorDiv)
-        newBook.prepend(colorPalette)
+        headerColors[0].appendChild(colorDiv)
         colorDiv.addEventListener('click', (e) => filterColors(e))
     }
     )
@@ -143,7 +170,7 @@ function filterColors(e) {
             p.classList.add('is-hidden')
         }
         hideChapters(chapters)
-        
+
     }
 
 }
@@ -183,7 +210,14 @@ function hideChapters(chapters) {
 }
 
 
-
+const copyToClipboard = e => {
+    const selectedParagraph = e.srcElement.outerText;
+    navigator.clipboard.writeText(selectedParagraph)
+    //    console.log(copyDialog)
+    copyDialog.open = true;
+    copyDialog.style.opacity = 1;
+    setTimeout(() => copyDialog.style.opacity = 0, 3000)
+}
 
 
 
